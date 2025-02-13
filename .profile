@@ -1,3 +1,8 @@
+# homebrew
+if [ -f /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 # source .profile.d
 if [ -d "$HOME/.profile.d" ]; then
     for script in "$HOME/.profile.d/"*; do
