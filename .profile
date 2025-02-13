@@ -3,6 +3,18 @@ if [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
+# PATH
+if [ -f "$HOME/.paths" ]; then
+  while IFS= read -r line; do
+    case "$line" in ''|\#*) continue ;; esac
+    expanded=$(eval echo "$line")
+    case ":$PATH:" in
+      *":$expanded:"*) ;;
+      *) PATH="$PATH:$expanded" ;;
+    esac
+  done < "$HOME/.paths"
+fi
+
 # source .profile.d
 if [ -d "$HOME/.profile.d" ]; then
     for script in "$HOME/.profile.d/"*; do
@@ -18,4 +30,3 @@ if [ -n "$BASH_VERSION" ]; then
         source "$HOME/.bashrc"
     fi
 fi
-
