@@ -1,0 +1,4 @@
+if command -v npm &> /dev/null; then
+    export NPM_CONFIG_CACHE="$HOME/.cache/npm"
+fi
+
