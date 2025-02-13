@@ -1,0 +1,9 @@
+if [ -z "$MANPAGER" ]; then
+    export MANPAGER="less -R"
+fi
+
+if [ -z "$EDITOR" ]; then
+    export EDITOR="vi"
+    export VISUAL="vi"
+fi
+

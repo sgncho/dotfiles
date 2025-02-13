@@ -1,0 +1,11 @@
+if command -v nvim &> /dev/null; then
+    if [ -z "$EDITOR" ]; then
+        export EDITOR="nvim"
+        export VISUAL="nvim"
+    fi
+
+    if [ -z "$MANPAGER" ]; then
+        export MANPAGER="nvim +Man!"
+    fi
+fi
+

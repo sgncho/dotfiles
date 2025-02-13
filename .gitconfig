@@ -1,0 +1,40 @@
+[user]
+  name = Seunggeun Cho
+  email = git@sgncho.com
+  signingkey = ~/.ssh/id_ed25519.pub
+
+[interactive]
+  diffFilter = delta --color-only
+ 
+[delta]
+  navigate = true
+  dark = true
+  line-numbers = true
+ 
+[commit]
+  gpgsign = true
+
+[gpg]
+  format = ssh
+ 
+[gpg "ssh"]
+  allowedSignersFile = ~/.ssh/.allowed-signers
+ 
+[tag]
+  gpgSign = true
+ 
+[merge]
+  conflictStyle = zdiff3
+ 
+[core]
+  editor = $EDITOR
+  excludesfile = $HOME/.config/git/ignore
+  autocrlf = input
+  pager = delta
+ 
+[diff]
+  algorithm = histogram
+  colorMoved = default
+ 
+[alias]
+  graph = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)%n' --abbrev-commit --date=relative --branches

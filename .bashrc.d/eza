@@ -1,0 +1,7 @@
+if command -v eza &> /dev/null; then
+    alias ls="eza"
+    alias ll="eza -al"
+    alias la="eza -A"
+    alias lt="eza -alRT --no-user --level=2"
+fi
+

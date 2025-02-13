@@ -1,0 +1,125 @@
+if command -v age &> /dev/null; then
+    encrypt() {
+        # Define colors
+        RED='\033[0;31m'
+        GREEN='\033[0;32m'
+        YELLOW='\033[0;33m'
+        BLUE='\033[0;34m'
+        NC='\033[0m'
+
+        # Check for the existence of the secret SSH key
+        if [[ ! -f "$HOME/.ssh/id_ed25519.pub" ]]; then
+            echo -e "${RED}Error:${NC} No public SSH key found at \$HOME/.ssh/id_ed25519.pub."
+            return 1
+        fi
+
+        # Check for the existence of the 'age' command
+        if ! command -v age &> /dev/null; then
+            echo -e "${RED}Error:${NC} 'age' command not found. Please install 'age' to proceed."
+            return 1
+        fi
+
+        # Specify the target 
+        local TARGET="${1:?'No target specified. Usage: encrypt <file_or_directory>'}"
+
+        # Automatically detect whether the target is a directory or file
+        if [[ -d "$TARGET" ]]; then
+            # case 1: directory 
+            echo -e "Encrypting directory ${BLUE}$TARGET${NC}"
+
+            # Encrypt the directory and save it as a tar.age file
+            tar -cf - "$TARGET" | age -R "$HOME/.ssh/id_ed25519.pub" > "$TARGET.tar.age"
+            if [[ "${PIPESTATUS[0]}" -eq 0 && "${PIPESTATUS[1]}" -eq 0 ]]; then
+                rm -rf "$TARGET"
+                echo -e "${GREEN}Success:${NC} Directory ${BLUE}$TARGET${NC} has been encrypted to ${BLUE}$TARGET.tar.age${NC} and original has been removed."
+            else
+                echo -e "${RED}Error:${NC} Failed to encrypt directory ${BLUE}$TARGET${NC}."
+                return 1
+            fi
+        elif [[ -f "$TARGET" ]]; then
+            # case 2: file
+            echo -e "Encrypting file ${BLUE}$TARGET${NC}"
+
+            age -R "$HOME/.ssh/id_ed25519.pub" "$TARGET" > "$TARGET.age"
+            if [[ "${PIPESTATUS[0]}" -eq 0 ]]; then
+                rm "$TARGET"
+                echo -e "${GREEN}Success:${NC} File ${BLUE}$TARGET${NC} has been encrypted to ${BLUE}$TARGET.age${NC} and original has been removed."
+            else
+                echo -e "${RED}Error:${NC} Failed to encrypt file ${BLUE}$TARGET${NC}."
+                return 1
+            fi
+        else
+            # case 3: invalid file or directory
+            echo -e "${RED}Error:${NC} '$TARGET' is not a valid file or directory."
+            return 1
+        fi
+    }
+
+    decrypt() {
+        # Define colors
+        RED='\033[0;31m'
+        GREEN='\033[0;32m'
+        YELLOW='\033[0;33m'
+        BLUE='\033[0;34m'
+        NC='\033[0m'
+
+        # Check for the existence of the secret SSH key
+        if [[ ! -f "$HOME/.ssh/id_ed25519" ]]; then
+            echo -e "${RED}Error:${NC} No secret SSH key found at \$HOME/.ssh/id_ed25519."
+            return 1
+        fi
+
+        # Check for the existence of the 'age' command 
+        if ! command -v age &> /dev/null; then
+            echo -e "${RED}Error:${NC} 'age' command not found. Please install 'age' to proceed."
+            return 1
+        fi
+
+        # Specify the target 
+        local TARGET="${1:?'No target specified. Usage: decrypt <file_or_directory.tar.age | file.age>'}"
+
+        # Automatically detect whether the target is a directory or file
+        if [[ "$TARGET" == *.tar.age ]]; then
+            # Directory encrypted file handling 
+            if [[ ! -f "$TARGET" ]]; then
+                echo -e "${RED}Error:${NC} ${BLUE}$TARGET${NC} does not exist or is not a file."
+                return 1
+            fi
+
+            echo -e "Decrypting directory encrypted file ${BLUE}$TARGET${NC}"
+
+            # Decrypt and extract the directory 
+            age -d -i "$HOME/.ssh/id_ed25519" "$TARGET" | tar -xf -
+            if [[ "${PIPESTATUS[0]}" -eq 0 && "${PIPESTATUS[1]}" -eq 0 ]]; then
+                rm "$TARGET"
+                echo -e "${GREEN}Success:${NC} Directory encrypted file ${BLUE}$TARGET${NC} has been decrypted and original encrypted file removed."
+            else
+                echo -e "${RED}Error:${NC} Failed to decrypt directory encrypted file ${BLUE}$TARGET${NC}."
+                return 1
+            fi
+        elif [[ "$TARGET" == *.age ]]; then
+            # File encrypted file handling 
+            if [[ ! -f "$TARGET" ]]; then
+                echo -e "${RED}Error:${NC} ${BLUE}$TARGET${NC} does not exist or is not a file."
+                return 1
+            fi
+
+            echo -e "Decrypting file ${BLUE}'$TARGET'${NC}"
+
+            local OUTPUT_FILE="${TARGET%.age}"
+            age -d -i "$HOME/.ssh/id_ed25519" -o "$OUTPUT_FILE" "$TARGET"
+            if [[ "${PIPESTATUS[0]}" -eq 0 ]]; then
+                rm "$TARGET"
+                echo -e "${GREEN}Success:${NC} File ${BLUE}$TARGET${NC} has been decrypted to ${BLUE}$OUTPUT_FILE${NC} and original encrypted file removed."
+            else
+                echo -e "${RED}Error:${NC} Failed to decrypt file ${BLUE}$TARGET${NC}."
+                return 1
+            fi
+        else
+            # Unsupported file type 
+            echo -e "${RED}Error:${NC} ${BLUE}$TARGET${NC} does not have a recognized '.age' or '.tar.age' extension."
+            return 1
+        fi
+    }
+fi
+

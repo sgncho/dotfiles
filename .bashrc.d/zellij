@@ -1,0 +1,11 @@
+if command -v zellij &> /dev/null; then
+    alias tm="zellij"
+
+    tma() {
+        zellij attach --create --index 0
+    }
+
+    tmr() {
+        zellij run --in-place -- $@
+    }
+fi

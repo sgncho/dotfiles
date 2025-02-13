@@ -1,0 +1,27 @@
+[
+  {
+    "bindings": {
+      "alt-/": "assistant::ToggleFocus"
+    }
+  },
+  {
+    "context": "vim_mode == normal || Terminal",
+    "bindings": {
+      "ctrl-j": "workspace::ToggleBottomDock"
+    }
+  },
+  {
+    "context": "(Dock||Terminal||Editor) && os == macos",
+    "bindings": {
+      "cmd-h": "workspace::ToggleLeftDock",
+      "cmd-l": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Dock||Terminal||Editor",
+    "bindings": {
+      "ctrl-h": "workspace::ToggleLeftDock",
+      "ctrl-l": "workspace::ToggleRightDock"
+    }
+  }
+]

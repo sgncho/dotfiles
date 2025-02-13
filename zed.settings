@@ -1,0 +1,143 @@
+{
+  "icon_theme": "Zed (Default)",
+  "ssh_connections": [
+    {
+      "host": "desktop",
+      "projects": [
+        {
+          "paths": [
+            "~/dev/hilow"
+          ]
+        },
+        {
+          "paths": [
+            "~/dev/hilow-new"
+          ]
+        },
+        {
+          "paths": [
+            "~/dev/hilow-server"
+          ]
+        },
+        {
+          "paths": [
+            "~/dev/tmp/hilow"
+          ]
+        }
+      ]
+    },
+    {
+      "host": "mango4",
+      "projects": [
+        {
+          "paths": [
+            "~/dev/hilow"
+          ]
+        },
+        {
+          "paths": [
+            "~/dev/hilow-server"
+          ]
+        },
+        {
+          "paths": [
+            "~/dev/specedge"
+          ]
+        }
+      ]
+    }
+  ],
+  "auto_signature_help": true,
+  "show_signature_help_after_completion": false,
+  "relative_line_numbers": true,
+  "cursor_blink": false,
+  "scrollbar": {
+    "show": "never"
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "terminal": {
+    "detect_venv": {
+      "on": {
+        "directories": [".venv"],
+        "activate_script": "default"
+      }
+    }
+  },
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+  "inlay_hints": {
+    "enabled": true
+  },
+  "buffer_font_family": "JetBrains Mono",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "ui_font_size": 14,
+  "buffer_font_size": 13,
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Dark",
+    "dark": "Ayu Dark"
+  },
+  "tabs": {
+    "git_status": true
+  },
+  "languages": {
+    "Git Config": {
+          "tab_size": 2
+    },
+    "CSS": {
+      "tab_size": 2
+    },
+    "C++": {
+      "tab_size": 2
+    },
+    "Markdown": {
+      "show_inline_completions": true,
+      "soft_wrap": "bounded"
+    },
+    "Make": {
+      "hard_tabs": true
+    },
+    "Python": {
+      "language_servers": ["pylsp", "!pyright"]
+    }
+  },
+  "lsp": {
+    "pylsp": {
+      "settings": {
+        "plugins": {
+          "pylsp_mypy": {
+            "enabled": false
+          },
+          "pylsp_rope": {
+            "enabled": false
+          },
+          "pycodestyle": {
+            "enabled": false
+          },
+          "pyflakes": {
+            "enabled": false
+          },
+          "pylint": {
+            "enabled": false
+          },
+        }
+      }
+    }
+  }
+}

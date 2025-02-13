@@ -1,0 +1,7 @@
+if command -v vim &> /dev/null; then
+    if [ -z "$EDITOR" ]; then
+        export EDITOR="vim"
+        export VISUAL="vim"
+    fi
+fi
+

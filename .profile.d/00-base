@@ -1,0 +1,5 @@
+hash -r
+unset EDITOR
+unset VISUAL
+unset MANPAGER
+
