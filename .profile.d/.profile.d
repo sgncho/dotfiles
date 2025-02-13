@@ -1,1 +1,0 @@
-/Users/sgncho/.dotfiles/.profile.d
