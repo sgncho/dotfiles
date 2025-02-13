@@ -2,7 +2,7 @@ if command -v zellij &> /dev/null; then
     alias tm="zellij"
 
     tma() {
-        zellij attach --create --index 0
+        zellij attach --index 0 || zellij attach --create
     }
 
     tmr() {
