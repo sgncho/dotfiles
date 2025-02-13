@@ -38,3 +38,6 @@
  
 [alias]
   graph = log --graph --pretty=format:'%C(red)%h%C(reset) -%C(yellow)%d%C(reset) %s %C(green)(%cr) %C(bold blue)<%an>%C(reset)%n' --abbrev-commit --date=relative --branches
+  ch = "!git checkout $(git branch | fzf)"
+  a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
+
