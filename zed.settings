@@ -1,52 +1,5 @@
 {
   "icon_theme": "Zed (Default)",
-  "ssh_connections": [
-    {
-      "host": "desktop",
-      "projects": [
-        {
-          "paths": [
-            "~/dev/hilow"
-          ]
-        },
-        {
-          "paths": [
-            "~/dev/hilow-new"
-          ]
-        },
-        {
-          "paths": [
-            "~/dev/hilow-server"
-          ]
-        },
-        {
-          "paths": [
-            "~/dev/tmp/hilow"
-          ]
-        }
-      ]
-    },
-    {
-      "host": "mango4",
-      "projects": [
-        {
-          "paths": [
-            "~/dev/hilow"
-          ]
-        },
-        {
-          "paths": [
-            "~/dev/hilow-server"
-          ]
-        },
-        {
-          "paths": [
-            "~/dev/specedge"
-          ]
-        }
-      ]
-    }
-  ],
   "auto_signature_help": true,
   "show_signature_help_after_completion": false,
   "relative_line_numbers": true,
