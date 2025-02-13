@@ -1,7 +1,11 @@
 [
   {
     "bindings": {
-      "alt-/": "assistant::ToggleFocus"
+      "alt-/": "assistant::ToggleFocus",
+      "ctrl-a h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-a j": ["workspace::ActivatePaneInDirection", "Down"], 
+      "ctrl-a k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-a l": ["workspace::ActivatePaneInDirection", "Right"]
     }
   },
   {

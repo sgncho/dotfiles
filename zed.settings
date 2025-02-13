@@ -50,6 +50,9 @@
     "git_status": true
   },
   "languages": {
+    "HTML": {
+      "tab_size": 2
+    },
     "Git Config": {
           "tab_size": 2
     },
