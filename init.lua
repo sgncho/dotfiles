@@ -1,3 +1,15 @@
+if vim.g.vscode then
+    -- VSCode extension
+
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
+
+keymap({ "n", "v", "i" }, "<C-h>", "<cmd>lua require('vscode').action('workbench.action.toggleAuxiliaryBar')<CR>")
+keymap({ "n", "v", "i" }, "<C-l>", "<cmd>lua require('vscode').action('workbench.action.toggleSidebarVisibility')<CR>")
+keymap({ "n", "v", "i" }, "<C-j>", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
+
+else
+    -- ordinary Neovim
 vim.o.number = true
 vim.o.relativenumber = true
 vim.o.cursorline = true
@@ -79,4 +91,6 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['pylsp'].setup {
   capabilities = capabilities
 }
+
+end
 

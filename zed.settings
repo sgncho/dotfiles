@@ -53,8 +53,11 @@
     "HTML": {
       "tab_size": 2
     },
+    "Svelte": {
+      "tab_size": 2
+    },
     "Git Config": {
-          "tab_size": 2
+      "tab_size": 2
     },
     "CSS": {
       "tab_size": 2
