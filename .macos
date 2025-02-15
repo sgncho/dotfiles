@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Set the padding around status bar items in the macOS menu bar to 5 pixels
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 8 
+
+# Set the spacing between status bar items in the macOS menu bar to 5 pixels
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 8 
+
+# Disable screenshot shadow
+defaults write com.apple.screencapture "disable-shadow" -bool "false"
+
+# Show hidden files in finder
+defaults write com.apple.finder "AppleShowAllFiles" -bool "false"
+
+# Show path bar in finder
+defaults write com.apple.finder "ShowPathbar" -bool "true"
+
+# Key hold down
+defaults write NSGlobalDomain "ApplePressAndHoldEnabled" -bool "false"
+
+# Turn off language indicator while switching input sources
+defaults write kCFPreferencesAnyApplication TSMLanguageIndicatorEnabled -bool "false"
+
