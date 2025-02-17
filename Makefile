@@ -27,6 +27,8 @@ help:
 git: ## Set git config
 	@test ! -f ${HOME}/.gitconfig || rm -f ${HOME}/.gitconfig
 	@test ! -f ${HOME}/.gitignore || rm -f ${HOME}/.gitignore
+
+	mkdir -p ${HOME}/.config/git
 	ln -sf ${PWD}/.gitconfig ${HOME}/.config/git/config
 	ln -sf ${PWD}/.gitignore ${HOME}/.config/git/ignore
 
@@ -37,10 +39,10 @@ git-test:
 	test -L ${HOME}/.config/git/ignore && diff -q ${PWD}/.gitignore ${HOME}/.config/git/ignore > /dev/null && exit 0 || exit 1
 
 bash: ## Set bash config
-	@test -e ${HOME}/.profile && rm -r ${HOME}/.profile
-	@test -e ${HOME}/.bashrc && rm -r ${HOME}/.bashrc
-	@test -e ${HOME}/.profile.d && rm -r ${HOME}/.bashrc.d
-	@test -e ${HOME}/.bashrc.d && rm -r ${HOME}/.bashrc.d
+	@test ! -e ${HOME}/.profile && rm -r ${HOME}/.profile
+	@test ! -e ${HOME}/.bashrc && rm -r ${HOME}/.bashrc
+	@test ! -e ${HOME}/.profile.d && rm -r ${HOME}/.bashrc.d
+	@test ! -e ${HOME}/.bashrc.d && rm -r ${HOME}/.bashrc.d
 
 	cp ${PWD}/.paths ${HOME}/.paths
 	ln -sf ${PWD}/.profile ${HOME}/.profile
