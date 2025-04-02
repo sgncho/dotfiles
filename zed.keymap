@@ -2,30 +2,38 @@
   {
     "bindings": {
       "alt-/": "assistant::ToggleFocus",
-      "ctrl-a h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-a j": ["workspace::ActivatePaneInDirection", "Down"], 
-      "ctrl-a k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-a l": ["workspace::ActivatePaneInDirection", "Right"]
+      "ctrl-a h": "workspace::ActivatePaneLeft",
+      "ctrl-a j": "workspace::ActivatePaneDown", 
+      "ctrl-a k": "workspace::ActivatePaneUp",
+      "ctrl-a l": "workspace::ActivatePaneRight"
     }
   },
   {
-    "context": "vim_mode == normal || Terminal",
+    "context": "VimControl || Terminal || Dock || Editor",
     "bindings": {
-      "ctrl-j": "workspace::ToggleBottomDock"
-    }
-  },
-  {
-    "context": "(Dock||Terminal||Editor) && os == macos",
-    "bindings": {
-      "cmd-h": "workspace::ToggleLeftDock",
-      "cmd-l": "workspace::ToggleRightDock"
-    }
-  },
-  {
-    "context": "Dock||Terminal||Editor",
-    "bindings": {
+      "ctrl-j": "workspace::ToggleBottomDock",
       "ctrl-h": "workspace::ToggleLeftDock",
-      "ctrl-l": "workspace::ToggleRightDock"
+      "ctrl-l": "workspace::ToggleRightDock",
+    }
+  },
+  {
+    "context": "(vim_mode == normal || vim_mode == visual) && (vim_operator == none || vim_operator == n) && !VimWaiting",
+    "bindings": {
+      "space g p": "git_panel::ToggleFocus",
+      "space g d": "git::Diff",
+      "space g r": "git::Restore",
+      "space g R": "git::RestoreFile",
+      "space g s": "git::ToggleStaged",
+      "space g b": "git::Branch",
+      "space g n": "git::StageAndNext",
+      "space g c": "git::ExpandCommitEditor",
+      "space a c": "assistant::ToggleFocus",
+      "space p p": "pane::RevealInProjectPanel",
+      "space p s": "project_symbols::Toggle",
+      "space p f": "file_finder::Toggle",
+      "space a i": "assistant::InlineAssist",
+      "space f f": "file_finder::Toggle",
+      "space f s": "outline::Toggle"
     }
   }
 ]
