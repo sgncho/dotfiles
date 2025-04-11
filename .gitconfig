@@ -7,8 +7,8 @@
   diffFilter = delta --color-only
  
 [delta]
+  light = true
   navigate = true
-  dark = true
   line-numbers = true
  
 [commit]
@@ -28,7 +28,7 @@
  
 [core]
   editor = $EDITOR
-  excludesfile = $HOME/.config/git/ignore
+  excludesfile = ~/.config/git/ignore
   autocrlf = input
   pager = delta
  
@@ -41,3 +41,11 @@
   ch = "!git checkout $(git branch | fzf)"
   a = "!git add $(git status -s | fzf -m | awk '{print $2}')"
 
+[pull]
+	ff = only
+
+[rebase]
+	autoSquash = true
+
+[init]
+	defaultBranch = main
